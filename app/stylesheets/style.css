@@ -1,0 +1,34 @@
+.navbar {
+    margin-bottom: 0px;
+}
+
+#ingrad > div {
+    padding-left: 1px;
+    padding-right: 1px;
+}
+.thumbnail a{
+    margin-bottom: 0px;
+}
+
+.cellos {
+    padding-left: 35px;
+    padding-right: 20px;
+}
+
+#counter {
+    background-color: #242433;
+    height: 90vh;
+}
+.thumbnail:hover {
+    transform: scale(1.2);
+}
+.thumbnail {
+
+    transition: all .2s ease-in-out;
+}
+.thumbnail:active {
+    background-color: #cacaca;
+}
+.list-group {
+    margin-bottom: 2px;
+}
