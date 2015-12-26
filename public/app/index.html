@@ -64,10 +64,10 @@
   <hr />
       <div class="panel panel-warning" ng-repeat="receipt in receiptsToCook">
         <div class="panel-heading">
-          <span><strong>{{receipt.product}}</strong><em> ({{($index + 1)*2}} min)</em></span>
+          <span><strong>{{receipt.title}}</strong><em> ({{Minutes(receipt.timeLog)}} min)</em></span>
           </div>
         <div class="panel-body">
-          <span class="small">{{receipt.preperation}}</span>
+          <span class="small">{{receipt.body}}</span>
         </div>
       </div>
     </div>
