@@ -1,0 +1,25 @@
+{
+  "name": "webpack-angular",
+  "version": "1.0.0",
+  "description": "Example of using webpack with an angular",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "srv": "webpack-dev-server --inline -d"
+  },
+  "keywords": [
+    "webpack",
+    "angular"
+  ],
+  "author": "Volodymyr Paskiv",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  },
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angular-ui-router": "^0.2.15",
+    "webpack-dev-server": "^1.14.0"
+  }
+}

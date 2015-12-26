@@ -7,8 +7,6 @@ module.exports = ['$scope', 'transporter', '$log', function($scope, transporter,
 
     $scope.remove = function (ingrad) {
         transporter.removeIngrad(ingrad);
-        console.log(ingrad);
     };
-
 
 }];
