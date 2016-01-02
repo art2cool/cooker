@@ -5,6 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var expressValidator = require('express-validator');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
 
 var ingratiates = require('./routes/ingratiates');
 var receipts = require('./routes/receipts');
@@ -25,14 +29,40 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('express-session')({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
+app.use(express.static(path.join(__dirname, 'public/app')));
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  res.header('Access-Control-Allow-Credentials', true);
   next();
 });
+
+// app.get('*', function(req, res, next){
+//   if(!req.headers.authorization) {
+//           return res.status(401).send({message: 'You are not authorized'});
+//       }
+//
+//       var token = req.headers.authorization.split(' ')[1];
+//       var payload = jwt.decode(token, 'secret');
+//
+//           User.findById(payload.sub, function(err, user) {
+//           if (err) throw err;
+//
+//           if (user) res.json(user);
+//
+// 	res.locals.user = req.user || null;
+// 	next();
+//
+// });
 
 app.use('/ingratiates', ingratiates);
 app.use('/receipts', receipts);

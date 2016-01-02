@@ -67,6 +67,20 @@ module.exports = ['$scope', 'transporter', '$http', function($scope, transporter
         db.ingradients.insert(ingratiatesDB[i]);
     }*/
 
+
+    var successCallbackIngrad = function(data) {
+        $scope.ingradDB = data.data;
+        console.log(data.data);
+    };
+    var errorCallbackIngrad = function(error, status) {
+        console.log(error);
+    };
+
+    $scope.goSearch = function(searchIngrad) {
+
+        $http.get('http://localhost:3000/ingratiates/' + searchIngrad.toLowerCase() ).then(successCallbackIngrad, errorCallbackIngrad);
+    };
+
     $scope.add = function(ingrad) {
         transporter.setIngrad(ingrad);
     }

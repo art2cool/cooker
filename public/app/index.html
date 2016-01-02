@@ -1,77 +1,66 @@
-<!DOCTYPE html>
-<html ng-app="MyApp">
-<head lang="en">
-  <meta charset="UTF-8">
-  <title>Angular with Webpack</title>
-  <link rel="stylesheet" href="https://bootswatch.com/superhero/bootstrap.min.css">
-</head>
-<body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Brand</a>
-    </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Singin</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-  <div class="row">
-    <!--ingradiance-->
-    <div class="col-lg-3 col-md-3 col-sm-3 cellos" ng-controller="IngratiateCtrl">
-      <h3 class="text-center">Ingradiance</h3>
-      <div class="row">
-        <div class="col-md-8 col-xs-8">
-          <input type="search" name="ingr"></input>
-        </div>
-        <div class="col-md-4 col-xs-4">
-          <input type="button" value="search"></input>
-        </div>
-
+  <!DOCTYPE html>
+  <html ng-app="MyApp">
+  <head lang="en">
+    <meta charset="UTF-8">
+    <title>Angular with Webpack</title>
+    <link rel="stylesheet" href="https://bootswatch.com/superhero/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <base href="/">
+  </head>
+  <body>
+  <nav class="navbar navbar-default" ng-controller='HeaderCtrl'>
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="main">Brand</a>
+        <a class="navbar-brand" href="#">{{isAuthenticated}}</a>
       </div>
-      <hr />
-      <div class="row" id="ingrad" >
-        <div class="col-xs-3 col-md-3" ng-repeat="ingrad in ingratiatesDB">
-          <div style="cursor: pointer; margin-bottom: 2px" class="thumbnail">
-            <img ng-src="images/{{ingrad.image}}" title="{{ingrad.ingradName}}" data-holder-rendered="true" style="height: 100 px; width: 100px; display: block;" ng-click="add(ingrad)">
-            <p class="small" style="margin-bottom: 0px">{{ingrad.ingradName}}</p>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a ui-sref="personal" ng-show="isAuthenticated">MyRoom</a></li>
+          <li>
+            <a href="#" data-toggle="modal" data-target="#login-modal" ng-hide="isAuthenticated">Login</a>
+            <a href="#" ng-click="logout()" ng-show="isAuthenticated">Log out</a>
+
+            <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+
+            <div class="modal-dialog">
+              <div class="loginmodal-container">
+                <h1>{{formLabel.title}}</h1>
+                <div class="alert alert-danger" role="alert" ng-show="error">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Error:</span>
+                  {{error}}
+                </div>
+                <div class="alert alert-success" role="alert" ng-show="complit">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Error:</span>
+                  {{complit}}
+                </div>
+                <form ng-submit="submit(formLabel.button)">
+                  <input type="email" name="email" placeholder="Email" ng-model="email">
+                  <input type="password" name="pass" placeholder="Password" ng-model="pass">
+                  <input type="password" name="pass2" placeholder="Compare Password" ng-show="formLabel.pass2" ng-model="pass2">
+                  <input type="submit" name="login" class="login loginmodal-submit" value="{{formLabel.button}}">
+                </form>
+
+                <div class="login-help">
+                  <a href="#" ng-click="swap()">{{formLabel.loginHelp}}</a> - <a href="#">Forgot Password</a>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <!--desctop-->
-    <div class="col-lg-3 col-md-3 col-sm-3" id="counter" ng-controller="CounterCtrl">
-      <h3 class="text-center">Counter</h3>
-      <div class="list-group" ng-repeat="ingrad in ingratiates">
-      <a class="list-group-item" ng-mousemove="show = true" ng-mouseleave="show=false">
-          <img ng-src="images/{{ingrad.image}}" title="{{ingrad.ingradName}}" style="height: 30px; width: 30px; margin-right: 10px">
-          <div ng-show="show" class="btn btn-danger btn-xs badge" ng-click="remove(ingrad)">remove</div>
-          <span class="text-capitalize"> {{ingrad.ingradName}}</span>
-      </a>
-      </div>
-    </div>
-<!--results-->
-    <div class="col-lg-6 col-md-6 col-sm-6" ng-controller="ReceiptCtrl">
-      <h3 class="text-center">Receipts</h3>
-        <div class="btn btn-info" ng-click="loads()">let's cook</div>
+          </li>
+          <li><a ui-sref="help">Help</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 
-  <hr />
-      <div class="panel panel-warning" ng-repeat="receipt in receiptsToCook">
-        <div class="panel-heading">
-          <span><strong>{{receipt.title}}</strong><em> ({{Minutes(receipt.timeLog)}} min)</em></span>
-          </div>
-        <div class="panel-body">
-          <span class="small">{{receipt.body}}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-<script src="bundle.js"></script>
-</body>
-</html>
+  <div ui-view> here you are</div>
+  <script src="bundle.js"></script>
+  </body>
+  </html>
