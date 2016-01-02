@@ -12,4 +12,15 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/:ingrad', function(req, res, next) {
+    console.log(req.params.ingrad);
+    Ingradient.find({"ingradName":{ '$regex':'.*' + req.params.ingrad + '*.' }}, {_id: true, 'ingradName': true, 'image': true}, function(err, ingrad) {
+        if(err) throw err;
+
+        res.send(ingrad);
+
+    });
+});
+
+
 module.exports = router;

@@ -26,9 +26,8 @@ router.post('/', function(req, res, next) {
             OrderReceipt.receiptSort(ingrads, receipts, function (err, result) {
                 if (err) throw err;
 
-                console.log(result);
 
-                res.send(result);
+                res.send(result.splice(0, 3));
 
             });
 

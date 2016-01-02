@@ -1,0 +1,96 @@
+<hr/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked admin-menu">
+                <li class="active"><a data-target-id="home">Home</a></li>
+                <li><a data-target-id="profile">Profile</a></li>
+                <li><a data-target-id="add"></i>add</a></li>
+                <li><a data-target-id="charts">Charts</a></li>
+                <li><a data-target-id="table"></i>Table</a></li>
+                <li><a data-target-id="forms">Forms</a></li>
+                <li><a data-target-id="calender">Calender</a></li>
+                <li><a data-target-id="library">Library</a></li>
+                <li><a data-target-id="applications">Applications</a></li>
+                <li><a data-target-id="settings">Settings</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9 well admin-content" id="home">
+          <h2>Add Receipts</h2>
+          <form class="form-horizontal">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Title </label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputEmail3" placeholder="Make eggs by Legs">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="receipt" class="col-sm-2 control-label">Receipt</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" rows="5" style="resize: none;"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="receipt" class="col-sm-2 control-label">Ingrads</label>
+            <div class="col-sm-10">
+              <add-ingrads></add-ingrads>
+              <div id="space-for-buttons"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-10 col-sm-2">
+              <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+          </div>
+        </form>
+        </div>
+        <div class="col-md-9 well admin-content" id="profile">
+            <h2>user name</h2>
+        </div>
+        <div class="col-md-9 well admin-content" id="add">
+
+        </div>
+        <div class="col-md-9 well admin-content" id="charts">
+            Charts
+        </div>
+        <div class="col-md-9 well admin-content" id="table">
+            Table
+        </div>
+        <div class="col-md-9 well admin-content" id="forms">
+            Forms
+        </div>
+        <div class="col-md-9 well admin-content" id="calender">
+            Calender
+        </div>
+        <div class="col-md-9 well admin-content" id="library">
+            Library
+        </div>
+        <div class="col-md-9 well admin-content" id="applications">
+            Applications
+        </div>
+        <div class="col-md-9 well admin-content" id="settings">
+            Settings
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function()
+{
+  var navItems = $('.admin-menu li > a');
+  var navListItems = $('.admin-menu li');
+  var allWells = $('.admin-content');
+  var allWellsExceptFirst = $('.admin-content:not(:first)');
+
+  allWellsExceptFirst.hide();
+  navItems.click(function(e)
+  {
+      e.preventDefault();
+      navListItems.removeClass('active');
+      $(this).closest('li').addClass('active');
+
+      allWells.hide();
+      var target = $(this).attr('data-target-id');
+      $('#' + target).show();
+  });
+});
+</script>

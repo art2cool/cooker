@@ -23,5 +23,5 @@ module.exports.receiptSort = function (ingrad, receipts, callback) {
         receipts[i].ingradients.splice(receipts[i].ingradients.length-1, 1);
     }
 
-callback(null, receipts);
+callback(null, receipts); 
 };

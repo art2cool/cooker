@@ -11,8 +11,10 @@ module.exports = ['$scope', 'transporter', '$http', 'receipts', function($scope,
         var errorCallback = function(error, status) {
             console.log(error);
         };
+        if($scope.ingratiates.length > 0) {
 
-        $http.post('http://localhost:3000/receipts', {data: $scope.ingratiates}).then(successCallback, errorCallback);
+            $http.post('http://localhost:3000/receipts', {data: $scope.ingratiates}).then(successCallback, errorCallback);
+        }
 
 /*
  $scope.receiptsToCook = receipts.getReceipt();

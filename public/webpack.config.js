@@ -1,18 +1,14 @@
 module.exports = {
     entry: './app/index.js',
     output: {
-        path: './app/',
-        filename: './app/bundle.js',
-        sourceMapFilename: 'bundle.map'
+        path: __dirname + '/app/',
+        filename: "bundle.js"
     },
-    watch: true,
-    keepalive: true,
+     watch: true,
+     livereload: true,
     module: {
         loaders: [
-            { test: /\.css$/, loader: "style!css" },
+            { test: /\.css$/, loader: "style!css" }
         ]
-    },
-    node: {
-        fs: "empty"
     }
 };

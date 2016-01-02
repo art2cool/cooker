@@ -1,0 +1,60 @@
+
+    <div class="row" id="container">
+      <!--ingradiance-->
+      <div class="col-lg-3 col-md-3 col-sm-3 cellos" ng-controller="IngratiateCtrl">
+        <h3 class="text-center">Ingradiance</h3>
+        <div class="row">
+          <div class="col-md-8 col-xs-8">
+            <input type="search" ng-model="serchIngrad"></input>
+          </div>
+          <div class="col-md-4 col-xs-4">
+            <input type="button" value="search" ng-click="goSearch(serchIngrad)"></input>
+          </div>
+        </div>
+
+        <div class="row ingrad" style="margin-top: 15px">
+            <div class="col-xs-3 col-md-3" ng-repeat="ingrad in ingradDB">
+              <div style="cursor: pointer; margin-bottom: 2px" class="thumbnail">
+                <img ng-src="images/{{ingrad.image}}" title="{{ingrad.ingradName}}" data-holder-rendered="true" style="height: 100 px; width: 100px; display: block;" ng-click="add(ingrad)">
+                <p class="small" style="margin-bottom: 0px">{{ingrad.ingradName}}</p>
+              </div>
+            </div>
+          </div>
+
+        <hr />
+        <div class="row ingrad" >
+          <div class="col-xs-3 col-md-3" ng-repeat="ingrad in ingratiatesDB">
+            <div style="cursor: pointer; margin-bottom: 2px" class="thumbnail">
+              <img ng-src="images/{{ingrad.image}}" title="{{ingrad.ingradName}}" data-holder-rendered="true" style="height: 100 px; width: 100px; display: block;" ng-click="add(ingrad)">
+              <p class="small" style="margin-bottom: 0px">{{ingrad.ingradName}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--desctop-->
+      <div class="col-lg-3 col-md-3 col-sm-3" id="counter" ng-controller="CounterCtrl">
+        <h3 class="text-center">Counter</h3>
+        <div class="list-group" ng-repeat="ingrad in ingratiates">
+        <a class="list-group-item" ng-mousemove="show = true" ng-mouseleave="show=false">
+            <img ng-src="images/{{ingrad.image}}" title="{{ingrad.ingradName}}" style="height: 30px; width: 30px; margin-right: 10px">
+            <div ng-show="show" class="btn btn-danger btn-xs badge" ng-click="remove(ingrad)">remove</div>
+            <span class="text-capitalize"> {{ingrad.ingradName}}</span>
+        </a>
+        </div>
+      </div>
+  <!--results-->
+      <div class="col-lg-6 col-md-6 col-sm-6" ng-controller="ReceiptCtrl">
+        <h3 class="text-center">Receipts</h3>
+          <div class="btn btn-info" ng-click="loads()">let's cook</div>
+
+    <hr />
+        <div class="panel panel-warning" ng-repeat="receipt in receiptsToCook">
+          <div class="panel-heading">
+            <span><strong>{{receipt.title}}</strong><em> ({{Minutes(receipt.timeLog)}} min)</em></span>
+            </div>
+          <div class="panel-body">
+            <span class="small">{{receipt.body}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
